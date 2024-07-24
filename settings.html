@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and Home Button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+        .navbar .home {
+            position: relative;
+            display: inline-block;
+        }
+        .navbar .home-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .navbar .home-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .navbar .home-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .navbar .home:hover .home-content {
+            display: block;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-bar input[type="text"] {
+            padding: 6px;
+            margin-right: 8px;
+            font-size: 17px;
+        }
+        .search-bar button {
+            padding: 6px 10px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+        .dark-theme {
+            background-color: #121212;
+            color: white;
+        }
+        .settings-icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="home">
+            <a href="#" class="home-button"><img src="settings-icon.png" alt="Settings" class="settings-icon"> Settings</a>
+            <div class="home-content">
+                <a href="downloads.html"><i class="fas fa-download"></i> Downloads</a>
+                <a href="#" id="dark-theme"><i class="fas fa-moon"></i> Dark Theme</a>
+                <a href="#" id="light-theme"><i class="fas fa-sun"></i> Light Theme</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="credits.html"><i class="fas fa-info-circle"></i> Credits</a>
+                <a href="#" id="notifications"><i class="fas fa-bell"></i> Allow Notifications</a>
+                <a href="#" id="select-download-location"><i class="fas fa-folder-open"></i> Select Download Location</a>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('dark-theme').addEventListener('click', function() {
+            document.body.classList.add('dark-theme');
+        });
+
+        document.getElementById('light-theme').addEventListener('click', function() {
+            document.body.classList.remove('dark-theme');
+        });
+
+        document.getElementById('notifications').addEventListener('click', function() {
+            if (Notification.permission === "granted") {
+                alert("Notifications are already enabled.");
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === "granted") {
+                        alert("Notifications have been enabled.");
+                    }
+                });
+            }
+        });
+
+        document.getElementById('select-download-location').addEventListener('click', function() {
+            alert("Download location selection is not supported by browsers directly. This feature needs to be handled via browser settings.");
+        });
+    </script>
+</body>
+</html>
